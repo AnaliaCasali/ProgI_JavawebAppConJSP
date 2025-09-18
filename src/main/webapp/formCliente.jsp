@@ -1,10 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page isELIgnored="false" %> .
+<%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<html>
-<body>
-<h2>Formulario de Cliente</h2>
+<%@ include file="header.jsp" %>
 
+<h2>Formulario de Cliente</h2>
 <form action="seCliente" method="GET">
 
 <input type="hidden" name="txtId" id="txtId" value="-1" />
@@ -27,6 +26,6 @@
 
         <a href="index.jsp"> Ir a Inicio </a>
 
+    <%@ include file="footer.jsp" %>
 </body>
-
 </html>
