@@ -2,17 +2,34 @@
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
-<web-app>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+         version="5.0">
+
   <display-name>Archetype Created Web Application</display-name>
   <!--nombre del servlet y paquete donde se encuentra-->
   <servlet>
     <servlet-name>HelloServlet</servlet-name>
-    <servlet-class>org.ies63.progI.HelloServlet</servlet-class>
+    <servlet-class>org.ies63.progI.servlets.HelloServlet</servlet-class>
   </servlet>
   <!--nombre del servlet y ruta url-->
   <servlet-mapping>
     <servlet-name>HelloServlet</servlet-name>
     <url-pattern>/hello</url-pattern>
   </servlet-mapping>
+
+
+  <servlet>
+    <servlet-name>seCliente</servlet-name>
+    <servlet-class>org.ies63.progI.servlets.seCliente</servlet-class>
+  </servlet>
+  <!--nombre del servlet y ruta url-->
+  <servlet-mapping>
+    <servlet-name>seCliente</servlet-name>
+    <url-pattern>/seCliente</url-pattern>
+  </servlet-mapping>
+
 
 </web-app>
