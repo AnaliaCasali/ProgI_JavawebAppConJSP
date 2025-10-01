@@ -13,7 +13,7 @@ public class ClienteImpl implements DAO<Cliente, Integer>, AdmConnexion {
   private Connection conn = null;
 
   private static final String SQL_INSERT =
-      "INSERT INTO clientes (nombre, apellido, telefono) " +
+      "INSERT INTO clientes (nom.bre, apellido, telefono) " +
           "VALUES (?, ?, ?)";
 
   private static final String SQL_UPDATE =
