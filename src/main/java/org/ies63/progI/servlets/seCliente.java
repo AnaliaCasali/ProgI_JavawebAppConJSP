@@ -16,23 +16,39 @@ public class seCliente extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-    String operacion="nuevo";
-    String nombre="";
-    String apellido="";
-    String telefono="";
-    int id=-1;
+    String operacion = "nuevo";
+    String nombre = "";
+    String apellido = "";
+    String telefono = "";
+    int id = -1;
+    operacion = req.getParameter("operacion");
 
-    nombre=req.getParameter("txtNombre");
-    apellido=req.getParameter("txtApellido");
-    telefono=req.getParameter("txtTelefono");
-    operacion=req.getParameter("operacion");
-    id= Integer.parseInt(req.getParameter("txtId"));
+    if (operacion.equals("editar") || operacion.equals("nuevo")) {
+      nombre = req.getParameter("txtNombre");
+      apellido = req.getParameter("txtApellido");
+      telefono = req.getParameter("txtTelefono");
+      id = Integer.parseInt(req.getParameter("txtId"));
+    } else
+      id = Integer.parseInt(req.getParameter("id"));
 
 
     // para guardar el cliente
-    Cliente clienteNuevo= new Cliente(id,nombre,apellido,telefono);
-    ClienteImpl clienteDAO= new ClienteImpl();
-    clienteDAO.insert(clienteNuevo);
+    ClienteImpl clienteDAO = new ClienteImpl();
+
+    if (operacion.equals("nuevo")) {// es nuevo
+      Cliente clienteNuevo = new Cliente(id, nombre, apellido, telefono);
+      clienteDAO.insert(clienteNuevo);
+    }
+    if (operacion.equals("editar")) {// es editar
+      Cliente clienteEditar = clienteDAO.getById(id);
+      clienteEditar.setNombre(nombre);
+      clienteEditar.setApellido(apellido);
+      clienteEditar.setTelefono(telefono);
+      clienteDAO.update(clienteEditar);
+    }
+    if (operacion.equals( "eliminar")) {
+      clienteDAO.delete(id);
+    }
 
     RequestDispatcher rd = req.getRequestDispatcher("/index.jsp");
     rd.forward(req, res);
