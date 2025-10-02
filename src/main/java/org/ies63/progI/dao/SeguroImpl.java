@@ -158,7 +158,7 @@ public class SeguroImpl implements AdmConnexion, DAO<Seguro, Integer> {
       //Si la consulta devuelve al menos 1 regristo, existe
       if (rs.next()) {
         seguro = new Seguro();
-        seguro.setIdSeguro(rs.getInt("idSeguro"));
+        seguro.setIdSeguro(rs.getInt("id"));
         seguro.setTipo((rs.getString("tipo")));
         seguro.setCostoMensual(rs.getDouble("costoMensual"));
         seguro.setCompañia(rs.getString("compañia"));

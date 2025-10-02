@@ -13,11 +13,11 @@ public class Auto implements Comparable {
 	private String modelo;
 	private  Cliente cliente;
 	private Seguro seguro;
-
 	
 	public Auto(){
 		this.cliente= new Cliente();
 		this.seguro= new Seguro();
+
 	}
 	
 	

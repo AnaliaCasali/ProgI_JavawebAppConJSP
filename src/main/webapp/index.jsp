@@ -10,6 +10,8 @@
 <a href="formCliente.jsp"> Nuevo Cliente </a>
 <br>
 <a href="listadoClientes.jsp"> Listado Cliente </a>
+<br>
+<a href="listadoAutos.jsp"> Listado Autos </a>
 
 </body>
 

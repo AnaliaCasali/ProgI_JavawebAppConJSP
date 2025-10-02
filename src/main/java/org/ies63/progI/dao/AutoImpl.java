@@ -19,6 +19,7 @@ public class AutoImpl implements DAO<Auto,Integer>, AdmConnexion {
   private static  final String  SQL_UPDATE= "UPDATE autos SET " +
       "patente = ? , color = ? , anio = ? , kilometraje = ? " +
       " , marca = ? , modelo = ? " +
+      " , idCliente = ? , idSeguro = ? " +
       "  WHERE idAuto = ? " ;
 
   private static  final String  SQL_DELETE= "DELETE FROM autos  WHERE idAuto = ? " ;
@@ -55,6 +56,15 @@ public class AutoImpl implements DAO<Auto,Integer>, AdmConnexion {
         auto.setKilometraje(rs.getInt("kilometraje"));
         auto.setMarca(Marca.valueOf(rs.getString("marca")));
         auto.setModelo(rs.getString("modelo"));
+
+        int idCli= rs.getInt("idCliente");
+        int idSeguro= rs.getInt("idSeguro");
+
+        ClienteImpl daoCli=new ClienteImpl();
+        auto.setCliente(daoCli.getById(idCli));
+
+        SeguroImpl daoSeguro=new SeguroImpl();
+        auto.setSeguro(daoSeguro.getById(idSeguro));
 
         listaAutos.add(auto);
       }
@@ -156,6 +166,8 @@ public class AutoImpl implements DAO<Auto,Integer>, AdmConnexion {
         pst.setString(5,auto.getMarca().toString());
         pst.setString(6,auto.getModelo());
         pst.setInt(7,auto.getIdAuto());
+        pst.setInt(8,auto.getCliente().getId());
+        pst.setInt(9,auto.getSeguro().getIdSeguro());
         // paso 4 ejecutar instruccion
         // executeUpdate devuelve 1 si ejecuto correctamente 0 caso contrario
         int resultado = pst.executeUpdate();
@@ -220,6 +232,14 @@ public class AutoImpl implements DAO<Auto,Integer>, AdmConnexion {
           auto.setAnio(rs.getInt("anio"));
           auto.setKilometraje(rs.getInt("kilometraje"));
           auto.setModelo(rs.getString("modelo"));
+          int idCli= rs.getInt("idCliente");
+          int idSeguro= rs.getInt("idSeguro");
+
+          ClienteImpl daoCli=new ClienteImpl();
+          auto.setCliente(daoCli.getById(idCli));
+
+          SeguroImpl daoSeguro=new SeguroImpl();
+          auto.setSeguro(daoSeguro.getById(idSeguro));
         }
 
       // CIERRO RESULTSET Y STATEMENT

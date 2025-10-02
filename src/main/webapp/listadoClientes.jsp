@@ -2,8 +2,6 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
-
-
 <%@ include file="header.jsp" %>
 
 <%@ page import="org.ies63.progI.dao.ClienteImpl" %>
@@ -36,11 +34,11 @@
 
     <% for(Cliente c : listaClientes) { %>
         <tr>
-       <td> <%=c.getId() %> </td>
+       <td> <%=c.getIdAuto() %> </td>
         <td><%=c.getNombre() %> </td>
         <td><%=c.getApellido() %> </td>
         <td><%=c.getTelefono() %> </td>
-        <td><a href="formCliente.jsp?operacion=editar&id=<%=c.getId() %>">Editar </a></td>
+        <td><a href="formCliente.jsp?operacion=editar&id=<%=c.getIdAuto() %>">Editar </a></td>
          <td><a href="seCliente?operacion=eliminar&id=<%=c.getId() %>">Borrar</a></td>
         </tr>
     <% }  %>
