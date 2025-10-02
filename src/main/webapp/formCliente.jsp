@@ -1,7 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
+<%@ page import="org.ies63.progI.entities.Marca" %>
 <%@ include file="header.jsp" %>
+
 
 <jsp:useBean id="cliente" class="org.ies63.progI.entities.Cliente" scope="request" />
 <jsp:useBean id="clienteDao" class="org.ies63.progI.dao.ClienteImpl" scope="page" />
@@ -10,8 +13,17 @@
     <c:set var="idCliente" value="${Integer.parseInt(param.id)}" />
     <c:set var="clienteEditar" value="${clienteDao.getById(idCliente)}" />
     <c:set var="listaClientes" value="${clienteDao.getAll()}" />
+    <c:set var="listaMarcas" value="${Marca.values()}" />
 
 </c:if>
+
+
+<!-- Obtener los valores del enum Marca -->
+<%
+    // Obtener todos los valores del enum Marca
+    Marca[] marcas = Marca.values();
+    request.setAttribute("listaMarcas", marcas);
+%>
 
 <h2>
 <c:choose>
@@ -26,7 +38,7 @@
 
     <label for="selectCliente">Seleccionar Cliente</label>
     <select name="lstCliente" id="lstCliente" tabindex="1">
-        <c:forEach var="cli" items="${listaClientes}">
+        <c:forEach var ="cli" items="${listaClientes}">
             <option value="${cli.id}"
                 <c:if test="${clienteEditar.id == cli.id}">selected</c:if>>
                 ${cli.nombre} ${cli.apellido}
@@ -34,6 +46,13 @@
         </c:forEach>
     </select>
 <br>
+    <select name="lstMarca" id="lstMarca" tabindex="1">
+        <c:forEach var="marca" items="${listaMarcas}">
+            <option value="${marca.name()}">
+                ${marca.name()}
+            </option>
+        </c:forEach>
+    </select>
 
 
 <input type="hidden" name="txtId" id="txtId"
