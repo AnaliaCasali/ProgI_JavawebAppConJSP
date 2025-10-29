@@ -1,5 +1,7 @@
 package org.ies63.progI.interfaces;
 
+import org.ies63.progI.util.PasswordUtil;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -31,6 +33,8 @@ public interface AdmConnexion {
       throw new RuntimeException(e);
     }
     System.out.println("Conexión exitosa a la BD");
+    System.out.println(PasswordUtil.hashPassword("12345678"));
+
     return  conn;
   }
 
