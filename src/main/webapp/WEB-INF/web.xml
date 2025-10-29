@@ -30,6 +30,15 @@
     <servlet-name>seCliente</servlet-name>
     <url-pattern>/seCliente</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>seSesiones</servlet-name>
+    <servlet-class>org.ies63.progI.servlets.seSesiones</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>seSesiones</servlet-name>
+    <url-pattern>/seSesiones</url-pattern>
+  </servlet-mapping>
 
 
 </web-app>
